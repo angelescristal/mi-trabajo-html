@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <h2>Verificación de Secuencia</h2>
+
+<p><strong>Secuencia propuesta:</strong></p>
+<pre id="sequence"></pre>
+
+<p><strong>Suma de pares consecutivos:</strong></p>
+<pre id="results"></pre>
+
+<p id="finalResult"></p>
+
+<script>
+  const seq = [16, 9, 7, 2, 14, 11, 5, 4, 12, 13, 3, 6, 10, 15, 1, 8];
+  const perfectSquares = [4, 9, 16, 25, 36];
+
+  document.getElementById("sequence").textContent = seq.join(', ');
+
+  let valid = true;
+  let resultText = '';
+
+  for (let i = 0; i < seq.length - 1; i++) {
+    const a = seq[i];
+    const b = seq[i + 1];
+    const sum = a + b;
+    const isPerfect = perfectSquares.includes(sum);
+
+    resultText += `${a} + ${b} = ${sum} ${isPerfect ? '✓' : '✗ (no es cuadrado perfecto)'}\n`;
+
+    if (!isPerfect) valid = false;
+  }
+
+  document.getElementById("results").textContent = resultText;
+  document.getElementById("finalResult").innerHTML = valid
+    ? '<strong class="ok">✅ La secuencia es válida: todas las sumas son cuadrados perfectos.</strong>'
+    : '<strong class="fail">❌ La secuencia no es válida: algunas sumas no son cuadrados perfectos.</strong>';
+</script>
+    
+</body>
+</html>
